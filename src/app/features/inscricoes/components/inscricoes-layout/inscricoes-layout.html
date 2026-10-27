@@ -1,0 +1,27 @@
+<section class="page-heading" aria-label="Informações do evento">
+  <div>
+    <h1>{{ titulo() }}</h1>
+    <p class="event-date">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <rect x="4" y="5" width="16" height="16" rx="2" />
+        <path d="M4 10h16M8 3v4M16 3v4" /></svg
+      >Domingo, {{ evento.dataExibicao }} · {{ evento.local }}
+    </p>
+  </div>
+  <div class="toolbar">
+    <div class="counts" aria-label="Participantes por percurso">
+      <span class="badge"
+        >5 km: <strong>{{ dados.contadores().cinco }}</strong></span
+      >
+      <span class="badge"
+        >10 km: <strong>{{ dados.contadores().dez }}</strong></span
+      >
+    </div>
+    <button #cadastro type="button" class="button primary" (click)="abrir()">
+      <span aria-hidden="true">+</span> Cadastrar corredor
+    </button>
+  </div>
+</section>
+<ng-content />
+<app-inscricao-form-modal />
+<app-cancelar-inscricao-modal (removida)="cancelada($event)" />

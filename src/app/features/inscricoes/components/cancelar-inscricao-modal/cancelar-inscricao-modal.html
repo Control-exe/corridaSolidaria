@@ -1,0 +1,40 @@
+<dialog
+  #dialog
+  aria-labelledby="cancel-title"
+  aria-describedby="cancel-description"
+  (cancel)="fechar($event)"
+  (keydown)="conterFoco($event)"
+>
+  <header class="modal-header">
+    <h2 id="cancel-title">Cancelar inscrição?</h2>
+    <button
+      class="close-button"
+      type="button"
+      aria-label="Fechar confirmação e manter inscrição"
+      (click)="fechar()"
+    >
+      ×
+    </button>
+  </header>
+  <div class="modal-body">
+    <p id="cancel-description">
+      A inscrição abaixo será removida da Corrida Solidária. Para participar novamente, será
+      necessário fazer um novo cadastro.
+    </p>
+    <div class="participant">
+      <strong>{{ inscricao()?.nome }}</strong
+      ><span>{{ inscricao()?.email }}</span>
+    </div>
+    @if (erro()) {
+      <p class="error" role="alert">{{ erro() }}</p>
+    }
+  </div>
+  <footer class="modal-footer">
+    <div class="modal-secondary">
+      <button type="button" class="button keep-button" (click)="fechar()">Manter inscrição</button>
+    </div>
+    <button type="button" class="button danger" (click)="confirmar()">
+      Confirmar cancelamento
+    </button>
+  </footer>
+</dialog>

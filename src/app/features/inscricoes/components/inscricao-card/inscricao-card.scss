@@ -1,0 +1,102 @@
+:host {
+  display: block;
+  min-width: 0;
+}
+.card {
+  height: 100%;
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  background: white;
+  box-shadow: 0 1px 3px #1423420b;
+  overflow: hidden;
+}
+.card-body {
+  padding: 17px 18px 14px;
+}
+h2 {
+  font-size: 16px;
+  line-height: 1.4;
+  margin: 0 0 2px;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+.email {
+  color: var(--muted);
+  margin-bottom: 11px;
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+.birth {
+  font-size: 13px;
+  margin-bottom: 14px;
+}
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.badge {
+  padding: 3px 10px;
+  font-size: 12px;
+}
+.category {
+  background: #e7eeff;
+  color: #23469f;
+  border-color: #cfdafa;
+}
+.category[data-category='Juvenil'] {
+  background: #fff4d8;
+  color: #7a5205;
+  border-color: #f0dfae;
+}
+.category[data-category='Master'] {
+  background: #f0eaff;
+  color: #5540a1;
+  border-color: #dfd2f6;
+}
+.category[data-category='Senhor'] {
+  background: #e1f1f2;
+  color: #116063;
+  border-color: #c4e1e3;
+}
+.distance {
+  color: #36445e;
+  background: #f3f5f9;
+}
+.distance svg {
+  width: 13px;
+  height: 13px;
+  color: #7c8799;
+}
+footer {
+  border-top: 1px solid #edf0f4;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 7px 10px;
+  flex-wrap: wrap;
+}
+footer a,
+footer button {
+  min-height: 32px;
+  display: inline-flex;
+  align-items: center;
+}
+button {
+  border: 0;
+  background: transparent;
+  padding: 0;
+}
+.text-button {
+  color: #2245ad;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.cancel-button {
+  color: #536077;
+  font-size: 13px;
+  gap: 6px;
+}
+.cancel-button:hover {
+  color: #a52632;
+}

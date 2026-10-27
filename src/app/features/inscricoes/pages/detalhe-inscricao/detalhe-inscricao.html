@@ -1,0 +1,26 @@
+<app-inscricoes-layout #layout titulo="Detalhes da inscrição">
+  <a class="back-link" routerLink="/inscricoes"
+    ><span aria-hidden="true">←</span> Voltar para inscrições</a
+  >
+  @if (inscricao(); as item) {
+    <p class="event-context">
+      {{ evento.nome }} · {{ evento.comunidade }} · {{ evento.dataExibicao }}
+    </p>
+    <div class="detail-card">
+      <app-inscricao-card
+        [inscricao]="item"
+        (editar)="layout.abrir($event)"
+        (cancelar)="layout.cancelar($event)"
+      />
+    </div>
+  } @else {
+    <section class="empty-state">
+      <h2>Inscrição não encontrada</h2>
+      <p class="muted">
+        A inscrição não existe ou foi removida. Os cadastros feitos nesta sessão são descartados ao
+        recarregar a página.
+      </p>
+      <a class="button" routerLink="/inscricoes">Voltar para inscrições</a>
+    </section>
+  }
+</app-inscricoes-layout>

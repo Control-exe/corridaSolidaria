@@ -1,1 +1,239 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --text: #192131;
+  --muted: #5c677c;
+  --blue: #2655e5;
+  --border: #dfe3eb;
+  --background: #f1f4fa;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  color: var(--text);
+  background: var(--background);
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+}
+button,
+input,
+select {
+  font: inherit;
+}
+button,
+a,
+input,
+select {
+  -webkit-tap-highlight-color: transparent;
+}
+button {
+  cursor: pointer;
+}
+a {
+  color: #2245ad;
+  text-underline-offset: 2px;
+}
+button,
+a {
+  touch-action: manipulation;
+}
+button:focus-visible,
+a:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid #6988ed;
+  outline-offset: 3px;
+}
+svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+h1 {
+  font-size: 28px;
+  line-height: 1.25;
+  letter-spacing: -0.7px;
+  margin-bottom: 4px;
+}
+.button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  min-height: 42px;
+  padding: 9px 17px;
+  border: 1px solid #d0d5df;
+  border-radius: 10px;
+  background: white;
+  color: var(--text);
+  font-weight: 600;
+  text-decoration: none;
+}
+.button:hover {
+  background: #f1f4fa;
+}
+.button.primary {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: white;
+  box-shadow: 0 2px 3px #1c3c9b20;
+}
+.button.primary:hover {
+  background: #1d43be;
+}
+.button.danger {
+  background: #b52b37;
+  border-color: #b52b37;
+  color: white;
+}
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+.muted {
+  color: var(--muted);
+}
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+.empty-state {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  text-align: center;
+  padding: 48px 20px;
+}
+.empty-state h2 {
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+.error {
+  color: #a52632;
+  font-size: 13px;
+  margin: 6px 0 0;
+}
+.skip-link {
+  position: fixed;
+  top: -100px;
+  left: 16px;
+  z-index: 10;
+  background: #fff;
+  padding: 10px;
+}
+.skip-link:focus {
+  top: 10px;
+}
+dialog {
+  padding: 0;
+  border: 1px solid #e3e6ed;
+  border-radius: 18px;
+  width: min(550px, calc(100% - 32px));
+  max-height: calc(100dvh - 32px);
+  color: var(--text);
+  box-shadow: 0 24px 80px #17233935;
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+dialog::backdrop {
+  background: #202b426b;
+}
+body:has(dialog[open]) {
+  overflow: hidden;
+}
+.modal-header {
+  position: relative;
+  padding: 20px 22px 14px;
+  border-bottom: 1px solid #edf0f4;
+}
+.modal-header h2 {
+  font-size: 21px;
+  line-height: 1.3;
+  margin: 0 30px 3px 0;
+  letter-spacing: -0.4px;
+}
+.modal-header p {
+  color: var(--muted);
+  margin: 0;
+  font-size: 13px;
+}
+.close-button {
+  position: absolute;
+  right: 16px;
+  top: 17px;
+  background: none;
+  border: 0;
+  color: var(--muted);
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  font-size: 25px;
+  line-height: 1;
+}
+.close-button:hover {
+  background: #f0f3f8;
+}
+.modal-body {
+  padding: 20px 22px;
+}
+.modal-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 14px 22px;
+  background: #fafbfd;
+  border-top: 1px solid #edf0f4;
+}
+@media (max-width: 1000px) {
+  .cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 640px) {
+  .cards {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  h1 {
+    font-size: 25px;
+  }
+}
+@media (max-width: 400px) {
+  .modal-header,
+  .modal-body {
+    padding: 16px;
+  }
+  .modal-footer {
+    padding: 14px 16px;
+  }
+  .modal-footer .button {
+    flex: 1 1 100%;
+  }
+  .modal-footer .modal-secondary {
+    flex: 1 1 100%;
+  }
+}

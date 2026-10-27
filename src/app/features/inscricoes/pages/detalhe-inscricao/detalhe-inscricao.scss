@@ -1,0 +1,23 @@
+.back-link {
+  display: inline-flex;
+  gap: 7px;
+  margin-bottom: 14px;
+}
+.event-context {
+  color: var(--muted);
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+.detail-card {
+  width: calc((100% - 32px) / 3);
+}
+@media (max-width: 1000px) {
+  .detail-card {
+    width: calc((100% - 16px) / 2);
+  }
+}
+@media (max-width: 640px) {
+  .detail-card {
+    width: 100%;
+  }
+}

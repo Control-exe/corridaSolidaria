@@ -1,0 +1,111 @@
+<dialog
+  #dialog
+  aria-labelledby="form-title"
+  aria-describedby="form-description"
+  (cancel)="fechar($event)"
+  (keydown)="conterFoco($event)"
+>
+  <form [formGroup]="form" (ngSubmit)="enviar()" novalidate>
+    <header class="modal-header">
+      <h2 id="form-title">{{ editando() ? 'Editar inscrição' : 'Nova inscrição' }}</h2>
+      <p id="form-description">Todos os campos são obrigatórios.</p>
+      <button
+        class="close-button"
+        type="button"
+        aria-label="Fechar formulário sem salvar"
+        (click)="fechar()"
+      >
+        ×
+      </button>
+    </header>
+    <div class="modal-body">
+      <div class="field">
+        <label for="nome">Nome completo</label>
+        <input
+          id="nome"
+          formControlName="nome"
+          autocomplete="name"
+          placeholder="Ex.: Maria Aparecida Souza"
+          [attr.aria-invalid]="!!erro('nome')"
+          aria-describedby="nome-error"
+        />
+        @if (erro('nome'); as mensagem) {
+          <p class="error" id="nome-error">{{ mensagem }}</p>
+        }
+      </div>
+      <div class="field">
+        <label for="email">E-mail</label>
+        <input
+          id="email"
+          formControlName="email"
+          type="email"
+          autocomplete="email"
+          placeholder="Ex.: maria.souza@email.com"
+          [readOnly]="editando()"
+          (click)="mostrarAvisoEmail.set(editando())"
+          [attr.aria-invalid]="!!erro('email')"
+          aria-describedby="email-hint email-error"
+        />
+        @if (editando() && mostrarAvisoEmail()) {
+          <p class="hint" id="email-hint">O e-mail não pode ser alterado.</p>
+        }
+        @if (erro('email'); as mensagem) {
+          <p class="error" id="email-error">{{ mensagem }}</p>
+        }
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="dataNascimento">Data de nascimento</label>
+          <input
+            id="dataNascimento"
+            formControlName="dataNascimento"
+            type="text"
+            inputmode="numeric"
+            (input)="formatarNascimento($event)"
+            autocomplete="bday"
+            placeholder="dd/mm/aaaa"
+            [attr.aria-invalid]="!!erro('dataNascimento')"
+            aria-describedby="nascimento-hint nascimento-error"
+          />
+          <span class="hint" id="nascimento-hint"></span>
+          @if (erro('dataNascimento'); as mensagem) {
+            <p class="error" id="nascimento-error">{{ mensagem }}</p>
+          }
+        </div>
+        <div class="field">
+          <label for="percurso">Percurso</label>
+          <select
+            id="percurso"
+            formControlName="percurso"
+            [attr.aria-invalid]="!!erro('percurso')"
+            aria-describedby="regras percurso-aviso percurso-error"
+          >
+            <option [ngValue]="null" disabled>Selecione o percurso</option>
+            <option [ngValue]="5">5 km</option>
+            <option [ngValue]="10" [disabled]="menor()">10 km</option>
+          </select>
+          @if (erro('percurso'); as mensagem) {
+            <p class="error" id="percurso-error">{{ mensagem }}</p>
+          }
+        </div>
+      </div>
+      <p class="notice" id="percurso-aviso" role="status" [hidden]="!avisoPercurso()">
+        {{ avisoPercurso() }}
+      </p>
+      @if (erroGeral()) {
+        <p class="error" role="alert">{{ erroGeral() }}</p>
+      }
+    </div>
+    <footer class="modal-footer">
+      <div class="modal-secondary">
+        @if (sucesso()) {
+          <app-confirmacao-sucesso [mensagem]="sucesso()" (concluido)="concluir()" />
+        }
+        <button type="button" class="button" (click)="fechar()">Cancelar</button>
+      </div>
+      <button type="submit" class="button primary" [disabled]="!!sucesso()">
+        {{ editando() ? 'Salvar alterações' : 'Confirmar inscrição' }}
+      </button>
+    </footer>
+  </form>
+</dialog>

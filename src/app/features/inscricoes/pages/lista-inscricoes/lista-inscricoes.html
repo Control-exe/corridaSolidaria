@@ -1,0 +1,19 @@
+<app-inscricoes-layout #layout titulo="Inscrições">
+  @if (dados.inscricoes().length) {
+    <section class="cards" aria-label="Todas as inscrições">
+      @for (inscricao of dados.inscricoes(); track inscricao.email) {
+        <app-inscricao-card
+          [inscricao]="inscricao"
+          (editar)="layout.abrir($event)"
+          (cancelar)="layout.cancelar($event)"
+        />
+      }
+    </section>
+  } @else {
+    <section class="empty-state">
+      <h2>A corrida começa com a primeira inscrição</h2>
+      <p class="muted">Ainda não há participantes. Cadastre um corredor para começar.</p>
+      <button class="button primary" (click)="layout.abrir()">Cadastrar corredor</button>
+    </section>
+  }
+</app-inscricoes-layout>

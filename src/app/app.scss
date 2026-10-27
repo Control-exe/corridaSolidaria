@@ -1,0 +1,79 @@
+:host {
+  display: block;
+}
+.site-header {
+  min-height: 80px;
+  padding: 20px 74px;
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 700;
+}
+.brand-icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  color: white;
+  background: linear-gradient(145deg, #3d70f5, #2146ce);
+  box-shadow: 0 2px 5px #234bc945;
+}
+.brand-icon svg {
+  width: 25px;
+  height: 25px;
+}
+.community {
+  color: var(--muted);
+  font-weight: 500;
+}
+.total {
+  flex-shrink: 0;
+  background: #e2f2eb;
+  color: #175c49;
+  border-color: #c3e1d3;
+  padding: 8px 13px;
+  gap: 6px;
+}
+main {
+  max-width: 1440px;
+  margin: auto;
+  padding: 28px 24px 40px;
+}
+@media (max-width: 600px) {
+  .site-header {
+    padding: 18px 34px;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .brand {
+    font-size: 14px;
+    gap: 9px;
+  }
+  .community {
+    display: block;
+    font-size: 12px;
+    margin-top: 2px;
+  }
+  .total {
+    font-size: 12px;
+    padding: 7px 9px;
+  }
+  .total svg {
+    display: none;
+  }
+  main {
+    padding: 24px 16px;
+  }
+}

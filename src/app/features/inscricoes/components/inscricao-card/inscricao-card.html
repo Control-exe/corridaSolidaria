@@ -1,0 +1,40 @@
+<article class="card" [attr.aria-label]="'Inscrição de ' + inscricao().nome">
+  <div class="card-body">
+    <h2>{{ inscricao().nome }}</h2>
+    <p class="email">{{ inscricao().email }}</p>
+    <p class="birth">Nasc. {{ nascimento() }} · Idade na prova: {{ idade() }} anos</p>
+    <div class="badges">
+      <span class="badge category" [attr.data-category]="categoria()">{{ categoria() }}</span>
+      <span class="badge distance"
+        ><svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="6" cy="18" r="2" />
+          <circle cx="18" cy="6" r="2" />
+          <path d="M8 18h7a4 4 0 0 0 0-8H9a4 4 0 0 1 0-8h7" /></svg
+        >{{ inscricao().percurso }} km</span
+      >
+    </div>
+  </div>
+  <footer>
+    <a
+      [routerLink]="['/inscricoes', inscricao().email]"
+      [attr.aria-label]="'Detalhes de ' + inscricao().nome"
+      >Detalhes</a
+    >
+    <button
+      class="text-button"
+      (click)="editar.emit(inscricao())"
+      [attr.aria-label]="'Editar inscrição de ' + inscricao().nome"
+    >
+      Editar
+    </button>
+    <button
+      class="cancel-button"
+      (click)="cancelar.emit(inscricao())"
+      [attr.aria-label]="'Cancelar inscrição de ' + inscricao().nome"
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13M10 10v7M14 10v7" /></svg
+      >Cancelar inscrição
+    </button>
+  </footer>
+</article>

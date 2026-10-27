@@ -1,23 +1,62 @@
 import { TestBed } from '@angular/core/testing';
+import { provideRouter, Router } from '@angular/router';
+import { RouterTestingHarness } from '@angular/router/testing';
 import { App } from './app';
+import { routes } from './app.routes';
+import { InscricoesService } from './features/inscricoes/services/inscricoes.service';
 
-describe('App', () => {
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [App],
-    }).compileComponents();
-  });
+describe('Aplicação e navegação', () => {
+  beforeEach(() =>
+    TestBed.configureTestingModule({ imports: [App], providers: [provideRouter(routes)] }),
+  );
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(App);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
-  });
-
-  it('should render title', async () => {
+  it('apresenta o evento e o contador total no cabeçalho', async () => {
     const fixture = TestBed.createComponent(App);
     await fixture.whenStable();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, corridaSolidaria');
+    expect(fixture.nativeElement.textContent).toContain('5ª Corrida Solidária');
+    expect(fixture.nativeElement.querySelector('.total').textContent).toContain('5');
+  });
+
+  it('redireciona raiz e rotas desconhecidas para a lista', async () => {
+    const harness = await RouterTestingHarness.create('/');
+    expect(TestBed.inject(Router).url).toBe('/inscricoes');
+    expect(harness.routeNativeElement?.querySelectorAll('article')).toHaveLength(5);
+    await harness.navigateByUrl('/rota-desconhecida');
+    expect(TestBed.inject(Router).url).toBe('/inscricoes');
+  });
+
+  it('navega com + e % no email sem codificação dupla, preservando a mesma service', async () => {
+    const dados = TestBed.inject(InscricoesService);
+    const email = 'ana+prova%teste@example.com';
+    dados.cadastrar({ nome: 'Ana da Prova', email, dataNascimento: '01/01/1990', percurso: 5 });
+    const harness = await RouterTestingHarness.create('/inscricoes');
+    const link = harness.routeNativeElement!.querySelector<HTMLAnchorElement>(
+      'a[aria-label="Detalhes de Ana da Prova"]',
+    )!;
+    expect(link.getAttribute('href')).toContain('ana%2Bprova%25teste@example.com');
+    await harness.navigateByUrl(link.getAttribute('href')!);
+    expect(harness.routeNativeElement?.textContent).toContain('Ana da Prova');
+    expect(harness.routeNativeElement?.textContent).toContain(email);
+    expect(harness.routeNativeElement?.querySelectorAll('article')).toHaveLength(1);
+    await harness.navigateByUrl('/inscricoes');
+    expect(harness.routeNativeElement?.querySelectorAll('article')).toHaveLength(6);
+  });
+
+  it('atualiza detalhes quando o parâmetro de email muda', async () => {
+    const harness = await RouterTestingHarness.create('/inscricoes/ana.clara@example.com');
+    await harness.navigateByUrl('/inscricoes/helena.costa@example.com');
+    expect(harness.routeNativeElement?.querySelector('article')?.textContent).toContain(
+      'Helena Costa',
+    );
+  });
+
+  it('mostra inscrição inexistente e convite de cadastro quando a lista esvazia', async () => {
+    const harness = await RouterTestingHarness.create('/inscricoes/inexistente@example.com');
+    expect(harness.routeNativeElement?.textContent).toContain('Inscrição não encontrada');
+    const dados = TestBed.inject(InscricoesService);
+    dados.inscricoes().forEach((item) => dados.cancelar(item.email));
+    await harness.navigateByUrl('/inscricoes');
+    expect(harness.routeNativeElement?.querySelectorAll('article')).toHaveLength(0);
+    expect(harness.routeNativeElement?.textContent).toContain('Cadastre um corredor');
   });
 });

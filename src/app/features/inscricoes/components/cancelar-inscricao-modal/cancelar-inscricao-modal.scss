@@ -1,0 +1,19 @@
+.modal-body p {
+  color: var(--muted);
+}
+.participant {
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #f7f9fc;
+  overflow-wrap: anywhere;
+}
+.participant strong,
+.participant span {
+  display: block;
+}
+.participant span {
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 3px;
+}

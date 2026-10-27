@@ -1,0 +1,70 @@
+.field {
+  min-width: 0;
+}
+.field + .field,
+.field-row {
+  margin-top: 15px;
+}
+label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+input,
+select {
+  width: 100%;
+  min-width: 0;
+  height: 44px;
+  border: 1px solid #cfd4df;
+  border-radius: 10px;
+  padding: 9px 12px;
+  color: var(--text);
+  background: #fff;
+}
+input::placeholder {
+  color: #7a8599;
+  opacity: 1;
+}
+input:focus,
+select:focus {
+  border-color: #5574d5;
+  outline: 3px solid #d3dcf8;
+  outline-offset: 1px;
+}
+input[aria-invalid='true'],
+select[aria-invalid='true'] {
+  border-color: #b52b37;
+}
+input[readonly] {
+  background: #f4f6fa;
+  color: #5c677c;
+}
+.field-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 16px;
+}
+.field-row .field {
+  margin-top: 0;
+}
+.hint {
+  display: block;
+  font-size: 12px;
+  color: var(--muted);
+  margin: 5px 0 0;
+}
+
+.notice {
+  font-size: 13px;
+  color: #754e07;
+  background: #fff4d8;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 12px 0 0;
+}
+@media (max-width: 480px) {
+  .field-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 15px;
+  }
+}
