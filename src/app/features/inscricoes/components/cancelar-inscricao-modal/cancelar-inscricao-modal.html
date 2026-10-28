@@ -3,7 +3,6 @@
   aria-labelledby="cancel-title"
   aria-describedby="cancel-description"
   (cancel)="fechar($event)"
-  (keydown)="conterFoco($event)"
 >
   <header class="modal-header">
     <h2 id="cancel-title">Cancelar inscrição?</h2>
@@ -18,7 +17,7 @@
   </header>
   <div class="modal-body">
     <p id="cancel-description">
-      A inscrição abaixo será removida da Corrida Solidária. Para participar novamente, será
+      A inscrição abaixo será removida da {{ evento.nomeCurto }}. Para participar novamente, será
       necessário fazer um novo cadastro.
     </p>
     <div class="participant">

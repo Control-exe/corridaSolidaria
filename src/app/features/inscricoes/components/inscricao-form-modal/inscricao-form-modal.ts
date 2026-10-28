@@ -22,7 +22,6 @@ import {
   validarPercurso,
 } from '../../rules/inscricao.rules';
 import { InscricoesService } from '../../services/inscricoes.service';
-import { manterFocoNaModal } from '../modal-focus';
 import { ConfirmacaoSucesso } from '../confirmacao-sucesso/confirmacao-sucesso';
 
 function adaptar(regra: (valor: string) => string | undefined): ValidatorFn {
@@ -52,7 +51,6 @@ export class InscricaoFormModal {
   protected readonly avisoPercurso = signal('');
   protected readonly erroGeral = signal('');
   protected readonly menor = signal(false);
-  protected readonly conterFoco = manterFocoNaModal;
   protected readonly form = new FormGroup({
     nome: new FormControl('', { nonNullable: true, validators: adaptar(validarNome) }),
     email: new FormControl('', { nonNullable: true, validators: adaptar(validarEmail) }),

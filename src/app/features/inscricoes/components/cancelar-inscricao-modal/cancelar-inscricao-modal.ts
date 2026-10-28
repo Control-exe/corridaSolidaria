@@ -1,7 +1,7 @@
 import { Component, ElementRef, inject, output, signal, viewChild } from '@angular/core';
 import { Inscricao } from '../../models/inscricao';
+import { EVENTO } from '../../config/evento';
 import { InscricoesService } from '../../services/inscricoes.service';
-import { manterFocoNaModal } from '../modal-focus';
 
 @Component({
   selector: 'app-cancelar-inscricao-modal',
@@ -9,13 +9,13 @@ import { manterFocoNaModal } from '../modal-focus';
   styleUrl: './cancelar-inscricao-modal.scss',
 })
 export class CancelarInscricaoModal {
+  protected readonly evento = EVENTO;
   private readonly dados = inject(InscricoesService);
   private readonly dialog = viewChild.required<ElementRef<HTMLDialogElement>>('dialog');
   private origem: HTMLElement | null = null;
   private retorno: HTMLElement | null = null;
   protected readonly inscricao = signal<Inscricao | null>(null);
   protected readonly erro = signal('');
-  protected readonly conterFoco = manterFocoNaModal;
   readonly removida = output<string>();
 
   abrir(inscricao: Inscricao, retorno: HTMLElement): void {

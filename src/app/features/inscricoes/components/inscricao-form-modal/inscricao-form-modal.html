@@ -3,7 +3,6 @@
   aria-labelledby="form-title"
   aria-describedby="form-description"
   (cancel)="fechar($event)"
-  (keydown)="conterFoco($event)"
 >
   <form [formGroup]="form" (ngSubmit)="enviar()" novalidate>
     <header class="modal-header">

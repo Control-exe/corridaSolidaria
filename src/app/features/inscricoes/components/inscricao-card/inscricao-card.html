@@ -16,25 +16,36 @@
   </div>
   <footer>
     <a
+      class="card-action details-action"
       [routerLink]="['/inscricoes', inscricao().email]"
       [attr.aria-label]="'Detalhes de ' + inscricao().nome"
-      >Detalhes</a
     >
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z" />
+        <circle cx="12" cy="12" r="3" />
+      </svg>
+      Detalhes
+    </a>
     <button
-      class="text-button"
+      class="card-action edit-action"
+      type="button"
       (click)="editar.emit(inscricao())"
       [attr.aria-label]="'Editar inscrição de ' + inscricao().nome"
     >
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="m16 3 5 5M4 20l5-1L21 7a2.1 2.1 0 0 0-5-5L4 14l-1 7 6-2" />
+      </svg>
       Editar
     </button>
     <button
-      class="cancel-button"
+      class="card-action cancel-action"
+      type="button"
       (click)="cancelar.emit(inscricao())"
       [attr.aria-label]="'Cancelar inscrição de ' + inscricao().nome"
     >
       <svg viewBox="0 0 24 24" aria-hidden="true">
         <path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13M10 10v7M14 10v7" /></svg
-      >Cancelar inscrição
+      >Cancelar
     </button>
   </footer>
 </article>

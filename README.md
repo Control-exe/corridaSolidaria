@@ -38,7 +38,7 @@ O build de produção fica em `dist/corridaSolidaria/browser`. Em hospedagem est
 
 O domínio fica em `src/app/features/inscricoes`: regras puras, configuração do evento, dados iniciais, service com `signal` privado e contadores `computed`, páginas e componentes standalone. A lista pública e os registros são somente leitura e congelados. Formulário e service compartilham as funções de validação; recusas retornam erros por campo sem alterar os dados.
 
-As modais usam `dialog.showModal()`, com título acessível, foco inicial, Escape e retorno ao acionador. Após remover um card, o foco volta ao botão estável de cadastro. Os erros aparecem após toque ou envio; sucesso é anunciado em região acessível. O layout usa três, duas ou uma coluna conforme o espaço, sem bibliotecas adicionais.
+As modais usam `dialog.showModal()`, com título acessível, foco inicial, Escape e retorno ao acionador. A navegação por Tab/Shift+Tab fica a cargo do navegador, sem controle manual do ciclo de foco. Após remover um card, o foco volta ao botão estável de cadastro. Os erros aparecem após toque ou envio; sucesso é anunciado em região acessível. O layout usa três, duas ou uma coluna conforme o espaço, sem bibliotecas adicionais.
 
 ## Verificação
 
