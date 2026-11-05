@@ -1,5 +1,5 @@
 export type Percurso = 5 | 10;
-export type Categoria = 'Juvenil' | 'Adulto' | 'Master' | 'Senhor';
+export type Categoria = 'Juvenil' | 'Adulto' | 'Master' | 'Senior';
 
 export interface Inscricao {
   readonly email: string;

@@ -1,4 +1,4 @@
-const data = '2027-03-14';
+const data = '2027-12-06';
 const diaDaSemana = new Intl.DateTimeFormat('pt-BR', {
   weekday: 'long',
   timeZone: 'UTC',

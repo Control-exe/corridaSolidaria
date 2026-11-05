@@ -48,7 +48,7 @@ export function categoriaPorIdade(idade: number): Categoria {
   if (idade < 18) return 'Juvenil';
   if (idade < 40) return 'Adulto';
   if (idade < 60) return 'Master';
-  return 'Senhor';
+  return 'Senior';
 }
 
 export function validarNome(nome: string): string | undefined {

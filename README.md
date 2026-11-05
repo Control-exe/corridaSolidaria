@@ -24,7 +24,7 @@ O build de produção fica em `dist/corridaSolidaria/browser`. Em hospedagem est
 
 - `/` redireciona para `/inscricoes`. Detalhes em `/inscricoes/:email`, com o segmento codificado pelo Angular Router. Rotas desconhecidas retornam para a lista.
 - “Cadastrar corredor” abre um formulário vazio. Todos os campos são obrigatórios e o nascimento deve ser digitado integralmente em `dd/mm/aaaa`.
-- A idade é calculada em **14/03/2027**: Juvenil (14–17), Adulto (18–39), Master (40–59), Senhor (60+). A idade mínima é 14 anos completos. Menores de 18 anos só podem escolher 5 km.
+- A idade é calculada em **14/03/2027**: Juvenil (14–17), Adulto (18–39), Master (40–59), Senior (60+). A idade mínima é 14 anos completos. Menores de 18 anos só podem escolher 5 km.
 - Datas impossíveis, incompletas ou futuras em relação ao dia local atual são recusadas. Para quem nasceu em 29/02, o aniversário em anos comuns é considerado em 01/03.
 - O nome tem espaços ajustados e deve conter entre 3 e 100 caracteres. Acentos, hífens e apóstrofos são aceitos.
 - O e-mail é normalizado com `trim` e minúsculas, deve ter formato válido e é o identificador único. Pode conter `+`. Na edição, é somente leitura e a service também preserva o identificador.
